@@ -13,9 +13,10 @@ class LinksController < ApplicationController
         @user = current_user
         @link = Link.new(link_params)
         @link.user_id = @user.id
-        # byebug
         if @link.save
+            # byebug
             flash.notice = "Link '#{@link.title}' Created!"
+            # byebug
             redirect_to @link
         else 
             render :new
