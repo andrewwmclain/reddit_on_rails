@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessible :email, :username
+  attr_accessor :email, :username
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

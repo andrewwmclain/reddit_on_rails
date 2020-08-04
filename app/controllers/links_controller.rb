@@ -1,6 +1,5 @@
 class LinksController < ApplicationController
     def index
-
     end
 
     def show
@@ -16,8 +15,15 @@ class LinksController < ApplicationController
 
         flash.notice = "Link '#{@link.title}' Created!"
 
-        redirect_to links_path#(@link)
+        redirect_to @link
         
+        # @link = Link.new(link_params)
+        # if @link.save
+        #   redirect_to @link
+        # else
+        #   render :new
+        # end
+
         # @link = Link.new(link_params)
         # respond_to do |format|
         #       if @link.save
