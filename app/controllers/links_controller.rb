@@ -10,12 +10,16 @@ class LinksController < ApplicationController
     end
     
     def create
+        @user = current_user
         @link = Link.new(link_params)
-        @link.save
-
-        flash.notice = "Link '#{@link.title}' Created!"
-
-        redirect_to @link
+        @link.user_id = @user.id
+        # byebug
+        if @link.save
+            flash.notice = "Link '#{@link.title}' Created!"
+            redirect_to @link
+        else 
+            render :new
+        end
         
         # @link = Link.new(link_params)
         # if @link.save
