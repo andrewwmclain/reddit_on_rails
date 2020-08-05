@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources :links
 
   resources :comments
+
+  resources :votes
 end

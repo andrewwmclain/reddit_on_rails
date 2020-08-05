@@ -8,6 +8,10 @@
     <li> 
         <%= link_to link.url, link.url %> <br>
         <%= link_to link.title, link_path(link.id) %> <br>
+        Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
+        <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post %>
+        <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post %>
+        <br>
         <%= link_to "comments", link_path(link.id) %> 
     </li>
   <% end %>
