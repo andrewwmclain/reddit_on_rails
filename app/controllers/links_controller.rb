@@ -3,6 +3,8 @@ class LinksController < ApplicationController
     end
 
     def show
+        @link    = Link.find(params[:id])
+        @comment = Comment.new
     end
 
     def new
@@ -14,9 +16,7 @@ class LinksController < ApplicationController
         @link = Link.new(link_params)
         @link.user_id = @user.id
         if @link.save
-            # byebug
             flash.notice = "Link '#{@link.title}' Created!"
-            # byebug
             redirect_to @link
         else 
             render :new
