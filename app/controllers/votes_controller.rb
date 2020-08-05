@@ -14,7 +14,7 @@ class VotesController < ApplicationController
             @vote.up = params[:vote][:up]
             @vote.save
         else
-            @vote = current_user.votes.create(params[:vote])
+            @vote = current_user.votes.create(vote_params)
         end
         redirect_to pages_path
     end

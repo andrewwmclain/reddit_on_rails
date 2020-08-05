@@ -12,14 +12,16 @@
 
         <% if current_user && current_user.votes.where(:link_id => link.id, :up => true).present? %>
           *
-        <% else %>
+        <% elsif current_user %>
           <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post %>
+        <% else %>
         <% end %>
 
         <% if current_user && current_user.votes.where(:link_id => link.id, :up => false).present? %>
           *
-        <% else %>
+        <% elsif current_user %>
           <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post %>
+        <% else %>
         <% end %>
         <br>
         <%= link_to "comments", link_path(link.id) %> 
