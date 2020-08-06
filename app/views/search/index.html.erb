@@ -1,0 +1,29 @@
+<%= will_paginate @links %>
+
+<ul>
+  <% @links.each do |link| %>
+    <li> 
+        <%= link_to link.url, link.url %> <br>
+        <%= link_to link.title, link_path(link.id) %> <br>
+        Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
+
+        <% if current_user && current_user.votes.where(:link_id => link.id, :up => true).present? %>
+          *
+        <% elsif current_user %>
+          <%= link_to "+", votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post %>
+        <% else %>
+        <% end %>
+
+        <% if current_user && current_user.votes.where(:link_id => link.id, :up => false).present? %>
+          *
+        <% elsif current_user %>
+          <%= link_to "-", votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post %>
+        <% else %>
+        <% end %>
+        <br>
+        <%= link_to "comments", link_path(link.id) %> 
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Add a link", new_link_path %>
