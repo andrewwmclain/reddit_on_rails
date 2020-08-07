@@ -2,8 +2,10 @@
 <h2>I AMA Link Page</h2>
 
 
-<div id="links-index-view">
-  <links-index-view>
-  </links-index-view>
+<% props = {
+    message: "THIS IS THE MESSAGE"
+  }.to_json
+%>
+<div id="links-index-view" data="<%= props %>">
+  <links-index-view></links-index-view>
 </div>
-
