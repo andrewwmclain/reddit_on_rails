@@ -8,6 +8,8 @@ default: &default
   adapter: postgresql
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  username: mclaina1
+  password: <%= ENV['reddit_on_rails_DATABASE_PASSWORD'] %>
 
 development:
   <<: *default
