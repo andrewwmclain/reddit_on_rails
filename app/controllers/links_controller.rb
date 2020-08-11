@@ -18,28 +18,10 @@ class LinksController < ApplicationController
         @link.user_id = @user.id
         if @link.save
             flash.notice = "Link '#{@link.title}' Created!"
-            redirect_to @link
+            redirect_to @link and return
         else 
-            render :new
+            render :new and return
         end
-        
-        # @link = Link.new(link_params)
-        # if @link.save
-        #   redirect_to @link
-        # else
-        #   render :new
-        # end
-
-        # @link = Link.new(link_params)
-        # respond_to do |format|
-        #       if @link.save
-        #         format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        #         format.json { render :show, status: :created, location: @link }
-        #       else
-        #         format.html { render :new }
-        #         format.json { render json: @link.errors, status: :unprocessable_entity }
-        #       end
-        # end
     end
 
     def link_params
