@@ -8,7 +8,7 @@
         <%= link_to link.url, link.url %> <br>
         Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
 
-        <div class="">
+        <div>
           <% if current_user && current_user.votes.where(:link_id => link.id, :up => true).present? %>
             <i class="fa fa-arrow-up" aria-hidden="true"></i>
           <% elsif current_user %>
@@ -29,7 +29,7 @@
         </div>
         <br>
         <%= link_to "comments:", link_path(link.id) %> 
-        <%= Comment.count.to_s %>
+        <%= link.comments.count %>
     </li>
   <% end %>
 </ul>
