@@ -28,7 +28,8 @@
           <% end %>
         </div>
         <br>
-        <%= link_to "comments", link_path(link.id) %> 
+        <%= link_to "comments:", link_path(link.id) %> 
+        <%= Comment.count.to_s %>
     </li>
   <% end %>
 </ul>
