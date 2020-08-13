@@ -1,4 +1,10 @@
-<h2>Explore Posts</h2>
+<h1> <%= "#{@user.email}" %> </h1>
+<h2>
+    <%= "Posts: #{@postCount}" %>
+</h2>
+<h2>
+    <%= "Comments: #{@commentCount}" %>
+</h2>
 
 <div class="digg_pagination">
     <div class="page_info">
@@ -7,10 +13,8 @@
     <%= will_paginate @links, :container => false %>
 </div>
 
-<%= link_to "Add a link", new_link_path %>
-
 <ul class="list-group">
-  <% @links.each do |link| %>
+  <% @user.links.each do |link| %>
     <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
         <%= link_to link.title, link_path(link.id) %> <br>
         <%= link_to link.url, link.url %> <br>
@@ -41,12 +45,3 @@
     </li>
   <% end %>
 </ul>
-
-<%= link_to "Add a link", new_link_path %>
-
-<div class="digg_pagination">
-    <div class="page_info">
-      <%= page_entries_info @links %>
-    </div>
-    <%= will_paginate @links, :container => false %>
-</div>
