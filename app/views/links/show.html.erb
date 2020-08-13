@@ -1,3 +1,11 @@
+<div class="media entry">
+  <div class="media-body">
+    <h5 class="mt-0" style="font-size: 25px"><%= @link.title %></h5>
+    <div style="font-size: 13px"><%= link_to @link.url, @link.url %></div>
+    <div style="color: rgb(26, 26, 27)"><%= @link.body %></div>
+  </div>
+</div>
+
 <%= form_with model: @comment do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
