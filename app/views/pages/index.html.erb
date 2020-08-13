@@ -1,9 +1,17 @@
 <h2>I AMA Homepage</h2>
-<%= will_paginate @links %>
+
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @links %>
+    </div>
+    <%= will_paginate @links, :container => false %>
+</div>
+
+<%= link_to "Add a link", new_link_path %>
 
 <ul class="list-group">
   <% @links.each do |link| %>
-    <li class="list-group-item" style="margin-bottom: 20px;"> 
+    <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
         <%= link_to link.title, link_path(link.id) %> <br>
         <%= link_to link.url, link.url %> <br>
         Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
@@ -35,3 +43,10 @@
 </ul>
 
 <%= link_to "Add a link", new_link_path %>
+
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @links %>
+    </div>
+    <%= will_paginate @links, :container => false %>
+</div>
