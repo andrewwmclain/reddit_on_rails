@@ -46,6 +46,29 @@
         <div>
           <span style="color:#1A1A1B;font-size: 20px"><%= comment.message %></span>
         </div>
+
+        Votes: <%= comment.comment_votes.where(:up => true).count - comment.comment_votes.where(:up => false).count %> <br>
+
+        <div>
+          <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :up => true).present? %>
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          <% elsif current_user %>
+            <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+              <i class="fa fa-arrow-up" aria-hidden="true"></i>
+              <% end %>
+          <% else %>
+          <% end %>
+
+          <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :up => false).present? %>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+          <% elsif current_user %>
+            <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => false, :user_id => current_user.id}), :method => :post do %>
+              <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              <% end %>
+          <% else %>
+          <% end %>
+        </div>
+
       </li>
     <% end %>
   </ul>

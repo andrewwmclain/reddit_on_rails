@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :votes
 
   resources :search
+
+  resources :comment_votes
 end
