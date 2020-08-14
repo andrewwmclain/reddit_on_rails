@@ -9,6 +9,7 @@ class RepliesController < ApplicationController
         @user = current_user
         @reply = Comment.new(reply_params)
         @reply.user_id = @user.id
+        byebug
         if @reply.save
             flash.notice = "Reply Created!"
             redirect_to link_path(@reply.link_id) and return
