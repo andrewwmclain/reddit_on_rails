@@ -16,26 +16,31 @@
         <%= link_to link.url, link.url %> <br>
         Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
 
-        <div>
-          <% if current_user && current_user.votes.where(:link_id => link.id, :up => true).present? %>
-            <i class="fa fa-arrow-up" aria-hidden="true"></i>
-          <% elsif current_user %>
-            <%= link_to votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+        <div>       
+          <% if current_user %> 
+            <% if current_user.votes.where(:link_id => link.id, :up => true).present? %>
               <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            <% else %>
+              <%= link_to votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
               <% end %>
-          <% else %>
-          <% end %>
-
-          <% if current_user && current_user.votes.where(:link_id => link.id, :up => false).present? %>
-            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-          <% elsif current_user %>
-            <%= link_to votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post do %>
-              <i class="fa fa-arrow-down" aria-hidden="true"></i>
             <% end %>
-          <% else %>
+
+            <% if current_user.votes.where(:link_id => link.id, :up => false).present? %>
+              <i class="fa fa-arrow-down" aria-hidden="true"></i>
+            <% else %>
+              <%= link_to votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post do %>
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+
+            <% else %>
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
           <% end %>
         </div>
         <br>
+
         <%= link_to "comments:", link_path(link.id) %> 
         <%= link.comments.count %>
     </li>
