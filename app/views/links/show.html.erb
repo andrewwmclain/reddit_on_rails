@@ -42,34 +42,45 @@
       <li class="list-group-item" style="margin-bottom: 20px;"> 
         <div>
           <% @email = User.find(comment.user_id).email %>
-          <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:15px"><%= link_to "#{@email}", user_path(comment.user_id) %></span>      
+          <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px"><%= link_to "#{@email}", user_path(comment.user_id) %></span>      
         </div>
         <div>
-          <span style="color:#1A1A1B;font-size: 20px"><%= comment.message %></span>
+          <span style="color:#1A1A1B;font-size: 15px"><%= comment.message %></span>
         </div>
 
-        Votes: <%= comment.comment_votes.where(:up => true).count - comment.comment_votes.where(:up => false).count %> <br>
-
         <div>
-          <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :up => true).present? %>
-            <i class="fa fa-arrow-up" aria-hidden="true"></i>
-          <% elsif current_user %>
-            <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+          <% if current_user %>
+            <% if current_user.comment_votes.where(:comment_id => comment.id, :up => true).present? %>
+              <span style="font-size: 1.0rem;">
+                <i class="fa fa-arrow-up" aria-hidden="true"></i>
+              </span>
+            <% else %>
+              <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+                <span style="font-size: 1.0rem;">
+                  <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                </span>
+              <% end %>
+            <% end %>
+
+            <% if current_user.comment_votes.where(:comment_id => comment.id, :up => false).present? %>
+              <span style="font-size: 1.0rem;">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+              </span>
+            <% else %>
+              <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => false, :user_id => current_user.id}), :method => :post do %>
+                <span style="font-size: 1.0rem;">
+                  <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                </span>
+              <% end %>
+            <% end %>
+          <% else %>
+            <span style="font-size: 1.0rem;">
               <i class="fa fa-arrow-up" aria-hidden="true"></i>
-              <% end %>
-          <% else %>
-          <% end %>
-
-          <% if current_user && current_user.comment_votes.where(:comment_id => comment.id, :up => false).present? %>
-            <i class="fa fa-arrow-down" aria-hidden="true"></i>
-          <% elsif current_user %>
-            <%= link_to comment_votes_path(:comment_vote => {:comment_id => comment.id, :up => false, :user_id => current_user.id}), :method => :post do %>
               <i class="fa fa-arrow-down" aria-hidden="true"></i>
-              <% end %>
-          <% else %>
+            </span>
           <% end %>
         </div>
-
+          <span style="font-size: 13px">Votes: <%= comment.comment_votes.where(:up => true).count - comment.comment_votes.where(:up => false).count %></span> <br>
       </li>
     <% end %>
   </ul>
