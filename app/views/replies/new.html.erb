@@ -1,4 +1,4 @@
-<%= form_with model: @reply, :url => '/replies', :method => :post do |f| %>
+<%= form_with model: @reply, :url => '/replies', :method => :post, local: true do |f| %>
     <% if @reply.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>

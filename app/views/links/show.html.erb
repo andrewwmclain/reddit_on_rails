@@ -1,12 +1,16 @@
 <div class="media entry">
   <div class="media-body">
+    <div>
+    <% @username = User.find(@link.user_id).username %>
+    <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(@link.user_id) %></span>      
+    </div>
     <h5 class="mt-0" style="font-size: 25px"><%= @link.title %></h5>
     <div style="font-size: 13px"><%= link_to @link.url, @link.url %></div>
     <div style="color: rgb(26, 26, 27)"><%= @link.body %></div>
   </div>
 </div>
 
-<%= form_with model: @comment do |f| %>
+<%= form_with(model: @comment, local: true) do |f| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
@@ -90,13 +94,13 @@
         </li>
         
         <% if Comment.where(parent_id: comment.id).exists? %>
-          <li class="list-group-item" style="margin-bottom: 20px;"> 
-            <div>
-              <% Comment.where(parent_id: comment.id).each do |reply| %>          
+          <div>
+              <% Comment.where(parent_id: comment.id).each do |reply| %>  
+                <li class="list-group-item" style="margin-bottom: 20px;">         
                 <span style="color:#1A1A1B;font-size: 15px"><%= reply.message %></span>
+                </li>
               <% end %>
-            </div>
-          </li>
+          </div>        
         <% end %>
       <% end %>
     <% end %>
