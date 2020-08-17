@@ -12,6 +12,10 @@
 <ul class="list-group">
   <% @links.each do |link| %>
     <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
+        <div>
+        <% @username = User.find(link.user_id).username %>
+        <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(link.user_id) %></span>      
+        </div>
         <%= link_to link.title, link_path(link.id) %> <br>
         <%= link_to link.url, link.url %> <br>
         Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
