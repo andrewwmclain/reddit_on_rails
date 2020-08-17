@@ -1,6 +1,6 @@
 <template>
  <div id="links-index-view">
-  <p>{{ message }}</p>
+  {{ link.title }}
  </div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   name: 'links-index-view',
   props: {
-    message: String
+    links: String
   },
   data: function () {
     return {
