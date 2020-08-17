@@ -42,8 +42,8 @@
       <% if !comment.parent_id %>
         <li class="list-group-item" style="margin-bottom: 20px;"> 
           <div>
-            <% @email = User.find(comment.user_id).email %>
-            <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px"><%= link_to "#{@email}", user_path(comment.user_id) %></span>      
+            <% @username = User.find(comment.user_id).username %>
+            <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px"><%= link_to "#{@username}", user_path(comment.user_id) %></span>      
           </div>
           <div>
             <span style="color:#1A1A1B;font-size: 15px"><%= comment.message %></span>
