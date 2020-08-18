@@ -5,6 +5,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://unpkg.com/@popperjs/core@^2.0.0"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= javascript_include_tag 'application.js', 'data-turbolinks-track' => true %>
@@ -24,8 +26,12 @@
               <li class="nav-item active" style="margin-right: 10px">
                 <%= link_to 'My Profile', user_path(current_user.id), :method => :get %>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item active" style="margin-right: 10px">
                 <%= link_to 'Sign Out', destroy_user_session_path, :method => :delete %>
+              </li>
+
+              <li class="nav-item active" style="margin-right: 10px">
+                <%= link_to 'Settings', edit_user_registration_path(current_user) %>
               </li>
             <%# if user is not logged in, show signup and login links %>
             <% else %>
