@@ -1,5 +1,8 @@
 <h1> <%= "#{@user.username}" %> </h1>
 <h5>
+    <%= "Karma: #{Vote.where(:up => true, :user_id => @user.id).count - Vote.where(:up => false, :user_id => @user.id).count}" %>
+</h5>
+<h5>
     <%= "Posts: #{@postCount}" %>
 </h5>
 <h5>
