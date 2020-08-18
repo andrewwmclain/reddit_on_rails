@@ -1,14 +1,18 @@
 <template>
- <div id="links-index-view">
-  {{ link.title }}
- </div>
+  <div>
+    <ul v-for="link in links" class="list-group">
+      <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
+          {{ link.title }}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'links-index-view',
   props: {
-    links: String
+    links: Array
   },
   data: function () {
     return {
