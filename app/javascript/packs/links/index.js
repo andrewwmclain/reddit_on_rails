@@ -23,8 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const app = new Vue({
       el: '#links-index-view',
       render: h => h(LinksIndexView, {props})
-    }).$mount()
-    document.body.appendChild(app.$el)
+    }).$mount('#links-index-view');
+    document.getElementById("links-index-view").appendChild(app.$el);
   
     // console.log(app)
   }
