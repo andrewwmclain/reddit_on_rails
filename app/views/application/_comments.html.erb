@@ -1,0 +1,5 @@
+<ul class="list-group" id="comments-list">
+  <% @link.comments.each do |comment| %>
+    <%= render 'comment', link: @link, comment: comment %>
+  <% end %>
+</ul>
