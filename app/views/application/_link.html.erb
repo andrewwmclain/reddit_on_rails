@@ -1,0 +1,37 @@
+<li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
+<div>
+<% @username = User.find(link.user_id).username %>
+<span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(link.user_id) %></span>      
+</div>
+<%= link_to link.title, link_path(link.id) %> <br>
+<%= link_to link.url, link.url %> <br>
+Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
+
+<div>       
+  <% if current_user %> 
+    <% if current_user.votes.where(:link_id => link.id, :up => true).present? %>
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    <% else %>
+      <%= link_to votes_path(:vote => {:link_id => link.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+
+    <% if current_user.votes.where(:link_id => link.id, :up => false).present? %>
+      <i class="fa fa-arrow-down" aria-hidden="true"></i>
+    <% else %>
+      <%= link_to votes_path(:vote => {:link_id => link.id, :up => false, :user_id => current_user.id}), :method => :post do %>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      <% end %>
+    <% end %>
+
+    <% else %>
+    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+  <% end %>
+</div>
+<br>
+
+<%= link_to "comments:", link_path(link.id) %> 
+<%= link.comments.count %>
+</li>
