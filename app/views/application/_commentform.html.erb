@@ -1,0 +1,28 @@
+<%= form_with(model: @comment, local: true) do |f| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+  
+        <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <% if current_user %>
+      <div class="field">
+        <%= f.label "Comment as" %> <%= current_user.email %><br>
+        <%= f.text_area :message, :placeholder => "Add a comment" %>
+      </div>
+    <% else %>
+        <%= link_to 'Sign In', new_user_session_path %> <%= " to leave a comment" %>
+    <% end %>
+    <% if current_user %>
+      <%= f.hidden_field :link_id, :value => @link.id %>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
+    <div class="actions">
+    <%= f.submit %>
+    </div>    
+  <% end %>
