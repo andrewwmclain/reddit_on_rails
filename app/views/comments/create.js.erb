@@ -1,1 +1,4 @@
-$("#comments-list").append("<%= render 'comment', link: @link, comment: comment %>");
+$('#comments-list').prepend(escape_javascript("<%= render 'comment', comment: @comment, link: @link %>"));
+<%logger.debug "This is the js file This is the js file This is the js file This is the js file This is the js file This is the js file This is the js file This is the js file"%>
+console.log("This is the js file This is the js file This is the js file This is the js file");
+alert("This is the js file This is the js file This is the js file This is the js file!");

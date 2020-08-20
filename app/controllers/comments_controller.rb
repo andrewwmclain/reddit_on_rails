@@ -12,7 +12,12 @@ class CommentsController < ApplicationController
                 end
             }
             format.js{
-
+                render layout: false, content_type: 'text/javascript'
+                if @comment.save
+                    flash.notice = "Comment Submitted!"
+                else 
+                    flash.notice = "Comment could not be created."
+                end            
             }
         end
     end

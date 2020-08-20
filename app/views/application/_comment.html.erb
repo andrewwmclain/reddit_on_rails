@@ -54,9 +54,9 @@
 
 <% if Comment.where(parent_id: comment.id).exists? %>
   <div>
-      <% Comment.where(parent_id: comment.id).each do |reply| %>  
+      <% Comment.where(parent_id: comment.id).each do |comment| %>  
         <li class="list-group-item" style="margin-bottom: 20px;">         
-          <span style="color:#1A1A1B;font-size: 15px"><%= reply.message %></span>
+          <span style="color:#1A1A1B;font-size: 15px"><%= comment.message %></span>
         </li>
       <% end %>
   </div>        
