@@ -1,0 +1,8 @@
+<%= form_with(url: pictures_path, method: "post", local: true) do |f| %>
+    <div class="field">
+        <%= text_field(:user, :img_url) %>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>    
+  <% end %>
