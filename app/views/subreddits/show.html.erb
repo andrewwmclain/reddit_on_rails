@@ -1,0 +1,4 @@
+<%= link_to "Add a link", new_link_path %>
+<% @subreddit.links.each do |link| %>
+    <%= render 'link', link: link %>
+<% end %>
