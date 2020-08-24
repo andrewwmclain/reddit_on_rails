@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   resources :replies
 
   resources :pictures
+
+  resources :subreddits
 end
