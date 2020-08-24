@@ -1,0 +1,6 @@
+<% @subreddits.each do |subreddit| %>
+    <%= subreddit.name %>
+    <% subreddit.links.each do |link| %>
+        <%= link.title %>
+    <% end %>
+<% end %>
