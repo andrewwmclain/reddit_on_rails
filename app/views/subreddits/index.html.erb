@@ -1,6 +1,6 @@
 <% @subreddits.each do |subreddit| %>
-    <%= subreddit.name %>
+    <%= link_to "#{subreddit.name}", subreddit_path(subreddit.id) %>
     <% subreddit.links.each do |link| %>
-        <%= link.title %>
+        <%= render 'link', link: link %>
     <% end %>
 <% end %>
