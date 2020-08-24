@@ -43,7 +43,8 @@
               <li class="nav-item active">
                 <%= link_to 'Register Now!', new_user_registration_path %>
               </li>
-            <% end %>    
+            <% end %>
+              <%= link_to 'Explore Subreddits', subreddits_path %>
           </ul>
           <%= form_with(url: search_index_path, method: "get", local: true) do %>
             <%= label_tag(:q, "Search for:") %>
