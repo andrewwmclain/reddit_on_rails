@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
     def index
-        @links = Link.paginate(:page => params[:page], :per_page => 10)
+        @links = Link.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     end
 
     def show
@@ -15,6 +15,7 @@ class LinksController < ApplicationController
     def create
         @user = current_user
         @link = Link.new(link_params)
+        @link.subreddit_id = 1
         @link.user_id = @user.id
         if @link.save
             flash.notice = "Link '#{@link.title}' Created!"
