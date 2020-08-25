@@ -5,8 +5,11 @@
       <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(@link.user_id) %></span>      
     </div>
     <h5 class="mt-0" style="font-size: 25px"><%= @link.title %></h5>
-    <div style="font-size: 13px"><%= link_to @link.url, @link.url %></div>    
-    <div style="color: rgb(26, 26, 27)"><%= @link.body %></div>
+    <div style="font-size: 13px"><%= link_to @link.url, @link.url %></div>   
+    <div style="color: rgb(26, 26, 27)">
+      <img src="<%= "#{@link.avatar.url}" %>" class="img-thumbnail rounded" style="width: 100px"></img><br> 
+      <%= @link.body %>
+    </div>
   </div>
 </div>
 
