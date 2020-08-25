@@ -15,7 +15,6 @@ class LinksController < ApplicationController
     def create
         @user = current_user
         @link = Link.new(link_params)
-        @link.subreddit_id = 1
         @link.user_id = @user.id
         if @link.save
             flash.notice = "Link '#{@link.title}' Created!"
