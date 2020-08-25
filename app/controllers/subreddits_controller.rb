@@ -4,6 +4,6 @@ class SubredditsController < ApplicationController
     end
 
     def show
-        @subreddit    = Subreddit.find(params[:id])
+        @subreddit = Subreddit.find(params[:id])
     end
 end
