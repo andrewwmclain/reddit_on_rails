@@ -1,9 +1,37 @@
 @import "bootstrap";
 
+
 .entry {
     border: 3px solid #888;
     margin-bottom: 15px;
     border-radius: 15px;
     background: #fafafa;
     padding: 20px 25px; 
+}
+
+.link-title{
+    color: #222222;
+    font-size: 20px;
+}
+
+.link-url{
+    font-size: 11px;
+}
+
+.link-username{
+    color: rgb(120, 124, 126);
+    font-size: 14px;
+}
+
+.link-to-comments{
+    color: rgb(135, 138, 140);;
+}
+
+.ml-2 {
+    margin-left: ($spacer * .5) !important;
+}
+
+.votes-count{
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-size: 15px;
 }
