@@ -2,14 +2,49 @@
   <div class="media-body">
     <div>
       <% @username = User.find(@link.user_id).username %>
-      <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(@link.user_id) %></span>      
+      <span class="link-username">Posted by <%= link_to "#{@username}", user_path(@link.user_id), class: "link-username"%> <%= "#{time_ago_in_words(@link.created_at)}" %> ago </span>      
     </div>
-    <h5 class="mt-0" style="font-size: 25px"><%= @link.title %></h5>
-    <div style="font-size: 13px"><%= link_to @link.url, @link.url %></div>   
+    <h5 class="link-title"><%= @link.title %></h5>
+    <%= link_to @link.url, @link.url, class:"link-url" %> <br>
     <div style="color: rgb(26, 26, 27)">
-      <img src="<%= "#{@link.avatar.url}" %>" class="img-thumbnail rounded" style="width: 100px"></img><br> 
+      <% if @link.avatar.url %>
+        <img src="<%= "#{@link.avatar.url}" %>" class="img-thumbnail rounded" style="width: 100px"></img><br>
+      <% end %> 
       <%= @link.body %>
     </div>
+
+    <div>   
+      <% if current_user %> 
+        <% if current_user.votes.where(:link_id => @link.id, :up => true).present? %>
+          <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <% else %>
+          <%= link_to votes_path(:vote => {:link_id => @link.id, :up => true, :user_id => current_user.id}), :method => :post do %>
+            <i class="fa fa-arrow-up" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+
+        <%= @link.votes.where(:up => true).count - @link.votes.where(:up => false).count %>
+
+        <% if current_user.votes.where(:link_id => @link.id, :up => false).present? %>
+          <i class="fa fa-arrow-down" aria-hidden="true"></i>
+        <% else %>
+          <%= link_to votes_path(:vote => {:link_id => @link.id, :up => false, :user_id => current_user.id}), :method => :post do %>
+            <i class="fa fa-arrow-down" aria-hidden="true"></i>
+          <% end %>
+        <% end %>
+
+      <% else %>
+        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <span class="votes-count"><%= @link.votes.where(:up => true).count - @link.votes.where(:up => false).count %></span>
+        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+      <% end %>
+
+      <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-fill ml-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+      </svg>
+      <span class="link-to-comments"><%= @link.comments.count %> comments </span>
+    </div>
+
   </div>
 </div>
 
