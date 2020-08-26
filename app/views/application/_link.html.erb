@@ -1,14 +1,13 @@
-<li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
+<li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; padding-bottom: 0;"> 
 <div>
-<% @username = User.find(link.user_id).username %>
-<span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px">Posted by <%= link_to "#{@username}", user_path(link.user_id) %></span>      
+  <% @username = User.find(link.user_id).username %>
+  <span class="link-username">Posted by <%= link_to "#{@username}", user_path(link.user_id), class: "link-username"%></span>      
 </div>
-<%= link_to link.title, link_path(link.id) %> <br>
-<%= link_to link.url, link.url %> <br>
+<%= link_to link.title, link_path(link.id), class: "link-title" %><br>
+<%= link_to link.url, link.url, class:"link-url" %> <br>
 <% if link.avatar.url %>
   <img src="<%= "#{link.avatar.url}" %>" class="img-thumbnail rounded" style="width: 100px"></img><br> 
 <% end %>
-Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
 
 <div>       
   <% if current_user %> 
@@ -20,6 +19,8 @@ Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).
       <% end %>
     <% end %>
 
+    <%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %> <br>
+
     <% if current_user.votes.where(:link_id => link.id, :up => false).present? %>
       <i class="fa fa-arrow-down" aria-hidden="true"></i>
     <% else %>
@@ -30,11 +31,18 @@ Votes: <%= link.votes.where(:up => true).count - link.votes.where(:up => false).
 
     <% else %>
     <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    <span class="votes-count"><%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></span>
     <i class="fa fa-arrow-down" aria-hidden="true"></i>
+
+    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-chat-square-fill ml-2" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+    </svg>
+    <span class="link-to-comments"><%= link.comments.count %></span>
+    <%= link_to "comments", link_path(link.id), class: "link-to-comments" %> 
   <% end %>
 </div>
 <br>
 
-<%= link_to "comments:", link_path(link.id) %> 
-<%= link.comments.count %>
+
+
 </li>
