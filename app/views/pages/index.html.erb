@@ -1,4 +1,6 @@
-<h2 style="background-color: #FFFFFF; padding: 10px; border: 3px solid gray; border-style: groove">Explore Posts</h2>
+<h2 style="background-color: #FFFFFF; padding: 10px; border: 2px solid #888">Explore Posts</h2>
+
+<a class="btn btn-primary" href="links/new" role="button">Add a Link</a>
 
 <div class="digg_pagination">
     <div class="page_info">
@@ -6,16 +8,14 @@
     </div>
     <%= will_paginate @links, :container => false %>
 </div>
-
-<%= link_to "Add a link", new_link_path %>
 
 <%= render 'links' %>
 
-<%= link_to "Add a link", new_link_path %>
-
 <div class="digg_pagination">
     <div class="page_info">
       <%= page_entries_info @links %>
     </div>
     <%= will_paginate @links, :container => false %>
 </div>
+
+<a class="btn btn-primary" href="links/new" role="button">Add a Link</a>
