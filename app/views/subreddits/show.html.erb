@@ -1,4 +1,11 @@
+<h2>r/<%= "#{@subreddit.name}" %></h2>
 <a class="btn btn-primary" href="/links/new" role="button">Add a Link</a>
+<div class="digg_pagination">
+    <div class="page_info">
+      <%= page_entries_info @links %>
+    </div>
+    <%= will_paginate @links, :container => false %>
+</div>
 <% @subreddit.links.each do |link| %>
     <%= render 'link', link: link %>
 <% end %>
