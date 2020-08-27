@@ -1,4 +1,8 @@
 <h2>r/<%= "#{@subreddit.name}" %></h2>
+
+<%=# link_to "Subscribe", subscriptions_path(@subreddit), method: :post %>
+<%=# link_to "Subscribe", subscriptions_path(), subreddit: @subreddit, :method => :post %>
+
 <a class="btn btn-primary" href="/links/new" role="button">Add a Link</a>
 <div class="digg_pagination">
     <div class="page_info">
