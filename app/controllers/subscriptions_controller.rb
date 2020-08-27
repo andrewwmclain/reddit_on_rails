@@ -3,7 +3,11 @@ class SubscriptionsController < ApplicationController
         if current_user
             @user = current_user
             
-            @user.subreddits << Subreddit.find(params[:subreddit][:id])
+            if(@user.subreddits.where(id: params[:subreddit][:id]).count > 0)
+                flash.notice = "You are already subscribed to this subreddit!"
+            else
+                @user.subreddits << Subreddit.find(params[:subreddit][:id])
+            end
             # Subreddit.find(params[:subreddit][:id]).users.create(email: current_user.email, 
             #                                         username: current_user.username,
             #                                         created_at: current_user.created_at,
