@@ -54,7 +54,9 @@
 <% if Comment.where(parent_id: comment.id).exists? %>
   <div>
       <% Comment.where(parent_id: comment.id).each do |comment| %>  
+        <div style="margin-left: 30px">
         <%= render 'comment', link: @link, comment: comment %>
+        </div>
       <% end %>
   </div>        
 <% end %>

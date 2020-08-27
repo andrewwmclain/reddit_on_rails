@@ -22,4 +22,6 @@ Rails.application.routes.draw do
   resources :pictures
 
   resources :subreddits
+
+  resources :subscriptions
 end
