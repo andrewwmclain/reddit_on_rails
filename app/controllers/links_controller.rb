@@ -9,7 +9,12 @@ class LinksController < ApplicationController
     end
 
     def new
-        @link = Link.new
+        if current_user
+            @link = Link.new
+        else
+            flash.notice = "You must signed in to do that!"
+            redirect_back(fallback_location: links_path) and return
+        end
     end
     
     def create
@@ -25,6 +30,6 @@ class LinksController < ApplicationController
     end
 
     def link_params
-        params.require(:link).permit(:title, :url, :body, :avatar)
+        params.require(:link).permit(:title, :url, :body, :avatar, :subreddit_id)
     end
 end
