@@ -1,7 +1,41 @@
 <h2>r/<%= "#{@subreddit.name}" %></h2>
 
-<%=# link_to "Subscribe", subscriptions_path(@subreddit), method: :post %>
-<%=# link_to "Subscribe", subscriptions_path(), subreddit: @subreddit, :method => :post %>
+
+
+
+
+<%= form_with(url: subscriptions_path, model: @subreddit, local: true, method: 'post') do |f| %>
+  <% if @subreddit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subreddit.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @subreddit.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if current_user %>
+
+  <%= f.hidden_field :id, :value => @subreddit.id %>
+
+  <div class="actions form-group col-sm-6" style="margin-left: -12px">
+    <button class="btn btn-primary" type="submit">Subscribe</button>
+  </div>   
+
+  <% else %>
+      <%= link_to 'Sign In', new_user_session_path %> <%= " to subscribe" %>
+  <% end %>
+
+
+ 
+
+<% end %>
+
+
+
 
 <a class="btn btn-primary" href="/links/new" role="button">Add a Link</a>
 <div class="digg_pagination">
