@@ -17,14 +17,17 @@
     <% end %>
 
     <%= f.hidden_field :id, :value => @subreddit.id %>
-    <div class="actions form-group col-sm-6" style="margin-left: -12px">
+    <div class="actions form-group col-sm-6" style="margin-left: -16px">
       <button class="btn btn-primary" type="submit">Subscribe</button>
     </div> 
   <% end %>
 
 <% elsif current_user %>
-    <%= link_to 'Unsubscribe', subscription_path(:subreddit_id => @subreddit.id), :method => :delete %>
-
+    <%= link_to subscription_path(:subreddit_id => @subreddit.id), :method => :delete do %>
+      <div class="actions form-group col-sm-6" style="margin-left: -16px">
+        <button class="btn btn-primary" type="submit">Unsubscribe</button>
+      </div>
+    <% end %>
 <% else %>
   <%= link_to 'Sign In', new_user_session_path %> <%= " to subscribe" %>
 <% end %>

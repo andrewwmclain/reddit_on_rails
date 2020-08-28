@@ -6,6 +6,7 @@ class SubscriptionsController < ApplicationController
             if(@user.subreddits.where(id: params[:subreddit][:id]).count > 0)
                 flash.notice = "You are already subscribed to this subreddit!"
             else
+                flash.notice = "Subscribed!"
                 @user.subreddits << Subreddit.find(params[:subreddit][:id])
             end
             # Subreddit.find(params[:subreddit][:id]).users.create(email: current_user.email, 
