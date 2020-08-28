@@ -32,6 +32,7 @@ class LinksController < ApplicationController
 
     def destroy
         Link.find(params[:id]).destroy
+        redirect_back(fallback_location: links_path) and return
     end
 
     def link_params
