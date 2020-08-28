@@ -29,6 +29,14 @@ class SubscriptionsController < ApplicationController
 
     end
 
+    def destroy
+        @user = current_user
+        @subreddit = @user.subreddits.find(params[:subreddit_id])
+        @user.subreddits.delete(@subreddit)
+        flash.notice = "Unsubscribed!"
+        redirect_back(fallback_location: links_path) and return
+    end
+
     def subreddit_params
         params.require(:subreddit).permit(:id, :created_at, :updated_at, :name)
     end
