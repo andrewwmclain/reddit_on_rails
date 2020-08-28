@@ -10,6 +10,12 @@
 <h5>
     <%= "Comments: #{@commentCount}" %>
 </h5>
+<h5>
+    Subscriptions: 
+    <% @user.subreddits.each do |subreddit| %>
+      <%= link_to "#{subreddit.name}", subreddit_path(subreddit.id) %>
+    <% end %>
+</h5>
 
 <div class="digg_pagination">
     <div class="page_info">

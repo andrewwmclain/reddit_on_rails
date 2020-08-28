@@ -1,5 +1,7 @@
 <h2>r/<%= "#{@subreddit.name}" %></h2>
-
+<% count = @subreddit.users.count %>
+<% members = count > 1 ? "members" : "member" %>
+<h3><%= "#{count}" + " " + "#{members}" %></h3>
 
 
 <% if current_user && current_user.subreddits.where(:id => @subreddit.id).count == 0 %>
