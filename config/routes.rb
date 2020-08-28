@@ -24,4 +24,6 @@ Rails.application.routes.draw do
   resources :subreddits
 
   resources :subscriptions
+
+  resources :searchsubreddits
 end
