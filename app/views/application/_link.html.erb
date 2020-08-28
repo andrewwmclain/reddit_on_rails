@@ -1,4 +1,4 @@
-<li class="list-group-item" style="border: 1px solid #888; margin-top: 10px; padding-bottom: 0;"> 
+<li class="list-group-item" style="border: 1px solid #888; margin-top: 10px; padding-bottom: 10;"> 
 <div>
   <% @username = User.find(link.user_id).username %>
   <span class="link-username">Posted by <%= link_to "#{@username}", user_path(link.user_id), class: "link-username"%> <%= "#{time_ago_in_words(link.created_at)}" %> ago </span>      
@@ -39,8 +39,16 @@
     <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
   </svg>
   <span class="link-to-comments"><%= link.comments.count %></span>
-  <%= link_to "comments", link_path(link.id), class: "link-to-comments" %> 
+  <%= link_to "comments", link_path(link.id), class: "link-to-comments" %>
+  
+  <% if current_user.id == link.user_id %>
+    <%= link_to link_path(:id => link.id), :method => :delete do %>
+      <div class="actions form-group col-sm-6" style="margin-left: -16px">
+        <button class="btn btn-primary" type="submit">Delete</button>
+      </div>    
+    <% end %>
+  <% end %>
+
 </div>
-<br>
 
 </li>

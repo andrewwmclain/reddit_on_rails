@@ -17,7 +17,7 @@
 <ul class="list-group">
     <% @subreddits.each do |subreddit| %>
         <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
-            <%= link_to "#{subreddit.name}", subreddit_path(subreddit.id) %>
+            <%= link_to "r/" + "#{subreddit.name}", subreddit_path(subreddit.id) %>
         </li>
     <% end %>
 <ul class="list-group">
