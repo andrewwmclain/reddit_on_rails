@@ -30,6 +30,10 @@ class LinksController < ApplicationController
         end
     end
 
+    def destroy
+        Link.find(params[:id]).destroy
+    end
+
     def link_params
         params.require(:link).permit(:title, :url, :body, :avatar, :subreddit_id)
     end
