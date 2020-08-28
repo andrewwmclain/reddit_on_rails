@@ -1,6 +1,7 @@
 class SubredditsController < ApplicationController
     def index
-        @subreddits = Subreddit.all
+        # @subreddits = Subreddit.all
+        @subreddits = Subreddit.order('name ASC').paginate(:page => params[:page], :per_page => 10)
     end
 
     def show
