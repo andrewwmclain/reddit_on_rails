@@ -27,6 +27,17 @@ class CommentsController < ApplicationController
         redirect_back(fallback_location: links_path) and return
     end
 
+    def edit
+        @comment = Comment.find(params[:id])
+    end
+    
+    def update
+    # @post = Post.find(params[:post_id])
+    # @comment = Comment.find(params[:id])
+    # @comment.update_attributes(params[:comment])
+    # redirect_to @post
+    end
+
     def comment_params
         params.require(:comment).permit(:message, :user_id, :link_id)
     end
