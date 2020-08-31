@@ -4,7 +4,7 @@
     <span style="background-color:#EDEFF1;color:#1A1A1B;font-size:13px"><%= link_to "#{@username}", user_path(comment.user_id) %></span>      
     
     <span style="position: absolute; top: 10px; right: 10px;">
-    <% if current_user.id == comment.user_id %>
+    <% if current_user && current_user.id == comment.user_id %>
       <%= link_to comment_path(:id => comment.id), :method => :delete, data: {confirm: "Are you sure?"} do %>
         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="#DC143C	" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z"/>
@@ -31,7 +31,9 @@
         <% end %>
       <% end %>
 
-      <% if current_user.comment_votes.where(:comment_id => comment.id, :up => false).present? %>
+       <span class="votes-count"><%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></span>
+      
+       <% if current_user.comment_votes.where(:comment_id => comment.id, :up => false).present? %>
         <span style="font-size: 1.0rem;">
           <i class="fa fa-arrow-down" aria-hidden="true"></i>
         </span>
@@ -46,17 +48,17 @@
     <% else %>
       <span style="font-size: 1.0rem;">
         <i class="fa fa-arrow-up" aria-hidden="true"></i>
+        <span class="votes-count"><%= link.votes.where(:up => true).count - link.votes.where(:up => false).count %></span>
         <i class="fa fa-arrow-down" aria-hidden="true"></i>
       </span>
     <% end %>
   </div>
 
-    <span style="font-size: 13px">Votes: <%= comment.comment_votes.where(:up => true).count - comment.comment_votes.where(:up => false).count %></span>
     <% if current_user %>
-      <div style="font-size: 15px;"><%= link_to "Reply", new_reply_path(:comment => comment, :link => @link) %></div>
+      <span style="font-size: 15px;"><%= link_to "Reply", new_reply_path(:comment => comment, :link => @link) %></span>
 
       <% else %>
-      <div style="font-size: 15px;"><%= link_to 'Sign In', new_user_session_path %> <%= " to reply" %></div>   
+      <span style="font-size: 15px;"><%= link_to 'Sign In', new_user_session_path %> <%= " to reply" %></span>   
     <% end %> 
 </li>
 
