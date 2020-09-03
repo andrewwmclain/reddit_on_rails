@@ -30,6 +30,20 @@ class LinksController < ApplicationController
         end
     end
 
+    def edit
+        @link = Link.find(params[:id])
+    end
+
+    def update
+        @link = Link.find(params[:id])
+        if @link 
+            byebug
+            @link.update_attributes(title: params[:link][:title], body: params[:link][:body], url: params[:link][:url], avatar: params[:link][:avatar], subreddit: params[:link][:subreddit])
+            byebug
+        end
+        redirect_to link_path(@link.id)
+    end
+
     def destroy
         Link.find(params[:id]).destroy
         redirect_back(fallback_location: links_path) and return
