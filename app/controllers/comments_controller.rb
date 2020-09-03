@@ -32,10 +32,13 @@ class CommentsController < ApplicationController
     end
     
     def update
-    # @post = Post.find(params[:post_id])
-    # @comment = Comment.find(params[:id])
-    # @comment.update_attributes(params[:comment])
-    # redirect_to @post
+        @comment = Comment.find(params[:id])
+        if @comment 
+            byebug
+            @comment.update_attributes(message: params[:comment][:message])
+            byebug
+        end
+        redirect_to link_path(@comment.link_id)
     end
 
     def comment_params
