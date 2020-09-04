@@ -51,3 +51,14 @@
 .title{
     font-family: 'VAG Rounded';
 }
+
+.list-group-item{
+    position: relative;
+    display: block;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #888;
+    margin-top: 10px;
+    padding-bottom: 10;
+}
