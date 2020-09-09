@@ -21,7 +21,7 @@ class LinksController < ApplicationController
         @user = current_user
         @link = Link.new(link_params)
         @link.user_id = @user.id
-        byebug
+        # byebug
         if @link.save
             flash.notice = "Link '#{@link.title}' Created!"
             redirect_to @link and return
@@ -37,9 +37,9 @@ class LinksController < ApplicationController
     def update
         @link = Link.find(params[:id])
         if @link 
-            byebug
+            # byebug
             @link.update_attributes(title: params[:link][:title], body: params[:link][:body], url: params[:link][:url], avatar: params[:link][:avatar], subreddit: params[:link][:subreddit])
-            byebug
+            # byebug
         end
         redirect_to link_path(@link.id)
     end
