@@ -27,5 +27,5 @@ test:
 production:
   <<: *default
   # database: db/production.postgresql
-  database: reddit_on_rails_production
+  database: reddit_on_rails_development
 
