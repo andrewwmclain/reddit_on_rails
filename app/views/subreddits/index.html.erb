@@ -1,3 +1,7 @@
+<% if current_user %>
+  <a class="btn btn-primary" href="subreddits/new" role="button">Create Subreddit</a>
+<% end %>
+
 <div class="digg_pagination">
 <div class="page_info">
   <%= page_entries_info @subreddits %>

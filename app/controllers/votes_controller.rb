@@ -7,7 +7,7 @@ class VotesController < ApplicationController
         else
             @vote = current_user.votes.create(vote_params)
         end
-        redirect_to pages_path
+        redirect_to link_path(params[:vote][:link_id])
     end
 
     def vote_params
