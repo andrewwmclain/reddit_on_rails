@@ -22,8 +22,10 @@
     <% @subreddits.each do |subreddit| %>
         <li class="list-group-item" style="border: 2px solid #888; margin-top: 10px; margin-bottom: 10px"> 
             <%= link_to "r/" + "#{subreddit.name}", subreddit_path(subreddit.id), class: "subreddit-title" %><br>
-            <%= link_to "#{subreddit.links.count} posts", subreddit_path(subreddit.id), class: "subreddit-title" %><br>
-            <%= link_to "#{subreddit.users.count} subscribers", subreddit_path(subreddit.id), class: "subreddit-title" %>
+            <% posts = subreddit.links.count === 1 ? "post" : "posts" %>
+            <%= link_to "#{subreddit.links.count} #{posts}", subreddit_path(subreddit.id), class: "subreddit-title" %><br>
+            <% members = subreddit.users.count === 1 ? "member" : "members" %>
+            <%= link_to "#{subreddit.users.count} #{members}", subreddit_path(subreddit.id), class: "subreddit-title" %>
         </li>
     <% end %>
 <ul class="list-group">

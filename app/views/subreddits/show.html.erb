@@ -1,6 +1,6 @@
 <h2>r/<%= "#{@subreddit.name}" %></h2>
 <% count = @subreddit.users.count %>
-<% members = count > 1 ? "members" : "member" %>
+<% members = count === 1 ? "member" : "members" %>
 <h3><%= "#{count}" + " " + "#{members}" %></h3>
 
 
